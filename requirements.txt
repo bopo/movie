@@ -11,11 +11,14 @@ django-reversion
 django-imagekit
 django-import-export
 django-simditor
+django-htmlmin
+django-model-utils
+django-debug_toolbar
+django-bower
 
 whitenoise
 
-django-debug_toolbar 
 drf_generators
 click
 raven
-plandjango-htmlmin
+plan

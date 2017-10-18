@@ -1,0 +1,155 @@
+{% load staticfiles %}
+{% load thumbnail %}
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" id="viewport"
+		  name="viewport"/>
+	<title></title>
+	<meta name="title" content=""/>
+	<meta name="keywords" content=""/>
+	<meta name="description" content=""/>
+	<meta name="applicable-device" content="mobile"/>
+	<meta content="telephone=no" name="format-detection"/>
+	<meta http-equiv="Cache-Control" content="no-siteapp"/>
+	<meta http-equiv="Cache-Control" content="no-transform"/>
+	<meta content="没事影院" name="apple-mobile-web-app-title"/>
+	<link href="http://m.m4yy.com/templets/2345/images/index.css" rel="stylesheet" type="text/css">
+	<script type="text/javascript" src="http://m.m4yy.com/templets/2345/images/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="http://m.m4yy.com/templets/2345/images/jquery-lazyload.js"></script>
+	<script type="text/javascript" src="http://m.m4yy.com/templets/2345/images/jquery.base.js"></script>
+</head>
+<body>
+<header class="header clearfix">
+	<a href="" target="_self" class="logo"></a>
+	<a href="javascript:;" target="_self" class="aHeaderSearch top_search_btn"><i
+			class="globalIcon searchIcon"></i><em>全网搜索</em></a>
+
+	<a href="" target="_self" class="aHeaderFun"><i class="globalIcon userIcon"></i><span>榜单</span></a>
+
+	<p class="headerChannelList">
+		<a class="current" href="" target="_self">首页</a>
+		<a href="{% url 'channel' '1' %}" target="_self">电影</a>
+		<a href="{% url 'channel' '1' %}" target="_self">电视剧</a>
+		<a href="{% url 'channel' '1' %}" target="_self">综艺</a>
+		<a href="{% url 'channel' '1' %}" target="_self">动漫</a>
+		<a href="{% url 'channel' '1' %}" target="_self">福利</a>
+	</p>
+
+	<section class="searchPop popShow">
+		<section class="searchCon">
+			<span class="sSearchInput">
+				<form name="browse" method="post" action="{% url 'browse' %}">
+					<input autocomplete="off" autovalue="请输入片名或主演名" class="searchInput" placeholder="请输入片名或主演名" type="search" id="keyword" name="searchword">
+				</form>
+				<i class="iDelete" style="display: none;"></i>
+			</span>
+			<input class="cancelInput" value="取消" type="button">
+		</section>
+		
+		<p class="pLinks">
+			<a href="" target="_self" title="神探狄仁杰第四部"><span class="sName">神探狄仁杰第四部</span><span class="sStyle">电视剧</span></a>
+
+			<a href="" target="_self" title="大话西游之爱你一万年"><span class="sName">大话西游之爱你一万年</span><span class="sStyle">电视剧</span></a>
+
+			<a href="" target="_self" title="白夜追凶"><span class="sName">白夜追凶</span><span class="sStyle">电视剧</span></a>
+
+			<a href="" target="_self" title="那年花开月正圆"><span class="sName">那年花开月正圆</span><span class="sStyle">电视剧</span></a>
+
+			<a href="" target="_self" title="通天狄仁杰"><span class="sName">通天狄仁杰</span><span class="sStyle">电视剧</span></a>
+
+			<a href="" target="_self" title="反黑"><span class="sName">反黑</span><span class="sStyle">电视剧</span></a>
+
+		</p></section>
+</header>
+
+<div class="mask"></div>
+<div class="tbmov-noticetop">
+	<script type="text/javascript" language="javascript" src="http://m.m4yy.com/js/js/waptop.js"></script>
+</div>
+
+<div class="rowAuto menuNavList">
+
+	<a href="{% url 'channel' '1' %}" target="_self"><i class="menuNavIcon dyIcon"></i><span
+			class="sTit">电影</span></a>
+
+	<a href="{% url 'channel' '1' %}" target="_self"><i class="menuNavIcon dsjIcon"></i><span
+			class="sTit">电视剧</span></a>
+
+	<a href="{% url 'channel' '1' %}" target="_self"><i class="menuNavIcon dmIcon"></i><span
+			class="sTit">综艺</span></a>
+
+	<a href="{% url 'channel' '1' %}" target="_self"><i class="menuNavIcon zyIcon"></i><span
+			class="sTit">动漫</span></a>
+
+	<a href="{% url 'channel' '1' %}" target="_self"><i class="menuNavIcon tjIcon"></i><span
+			class="sTit">福利</span></a>
+
+	<a href="{% url 'channel' '1' %}" target="_self"><i class="menuNavIcon zbIcon"></i><span class="sTit">直播</span></a>
+</div>
+
+<div class="tbmov-notice">
+	<DIV class=sf-alert-remove
+		 onclick="try { $(this.parentNode).slideUp(1); } catch(e) { this.parentNode.style.display = 'none'; };"></DIV>
+	喜欢本站的亲 请大家收藏和分享给好友..
+</div>
+
+<div class="modo_title">
+	<i class="icol iconfont"></i>
+	<h2><a href="" title="电视剧" target="_self">电视剧</a></h2>
+	<i class="icor iconfont class="aMore">
+		<a href="" title="电视剧" target="_self">更多</a>
+	</i>
+</div>
+
+{% block content %}
+<div class="all_tab" style="border-bottom:none">
+	<ul class="globalPicList threeList clearfix" id="resize_list">
+
+		<li>
+			<div class="pic">
+				<a href="" target="_self">
+					<img class="loading" data-original="" src="" alt="" />
+					<span class="sBottom">50集全</span>
+				</a>
+			</div> 
+			<span class="sTit">
+				<a href="" target="_self">神探狄仁杰第四部</a>
+			</span>
+			<span class="sDes">梁冠华,吴卓翰,周洁,王鸥,宋轶</span>
+		</li>
+	</ul>
+</div>
+{% endblock %}
+
+<script type="text/javascript" src="http://m.m4yy.com/templets/2345/images/sildeFocusPlugin.js"></script>
+<script>
+	$("#focus").sildeFocusPlugin({
+		speed: 10,
+		conClassName: "focusList",
+		tabClassName: "focusTab"
+	});
+</script>
+<div class="footer">
+	<div class="fBox">
+		<div class="footer_nav">
+			<a href="http://m.m4yy.com/top/top.html" target="_self">影片榜单</a>-<a href="http://m.m4yy.com/gbook.php"
+																				target="_self">留言反馈</a>-<a
+				href="javascript:scroll(0,0)" target="_self">返回顶部</a></div>
+		本网站所有内容均系采集于互联网，若本站收录的节目无意侵犯了贵司版权，请给邮箱xuanday#qq.com来信，我们会及时处理！
+	</div>
+</div>
+ 
+<section class="fixedBtnList" style=""> 
+	<a onclick="_dct_('mys_bottom_top');" class="gotoTop" target="_self" href="javascript:scroll(0,0)"></a> 
+</section>
+
+<span style="display:none"></span>
+
+<script type="text/javascript" src="http://m.m4yy.com/templets/2345/images/common.min.js"></script>
+<script type="text/javascript" src="http://m.m4yy.com/js/lm.js"></script>
+<script type="text/javascript" src="http://m.m4yy.com/js/foot.js"></script>
+
+</body>
+</html>

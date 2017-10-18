@@ -1,14 +1,14 @@
 from django.contrib import sitemaps
-from django.core.urlresolvers import reverse
-from .models import Photo
+
+from .models import Video
 
 
-class PhotoViewSitemap(sitemaps.Sitemap):
+class VideoViewSitemap(sitemaps.Sitemap):
     changefreq = "never"
     priority = 0.5
 
     def items(self):
-        return Photo.objects.all()
+        return Video.objects.all()
 
     def lastmod(self, obj):
         return obj.pub_date

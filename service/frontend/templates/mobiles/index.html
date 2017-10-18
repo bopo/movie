@@ -1,0 +1,24 @@
+{% extends "mobiles/layout.html" %}
+{% block content %}
+{% load thumbnail %}
+<div class="all_tab" style="border-bottom:none">
+	<ul class="globalPicList threeList clearfix" id="resize_list">
+		
+		{% for vo in resize_list %}
+		<li>
+			<div class="pic">
+				<a href="{% url 'detail' vo.id %}" target="_self">
+					<img class="loading" data-original="{{vo.cover|thumbnail_url:'cov'}}" src="{{vo.cover|thumbnail_url:'cov'}}" alt="{{vo.title}}" />
+					<span class="sBottom">50集全</span>
+				</a>
+			</div> 
+			<span class="sTit">
+				<a href="{% url 'detail' vo.id %}" target="_self">神探狄仁杰第四部</a>
+			</span>
+			<span class="sDes">梁冠华,吴卓翰,周洁,王鸥,宋轶</span>
+		</li>
+		{% endfor %}
+
+	</ul>
+</div>
+{% endblock %}

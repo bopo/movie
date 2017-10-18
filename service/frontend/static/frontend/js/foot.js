@@ -1,0 +1,1 @@
+document.writeln("<script src=\'http:\/\/www.kuaiyan.com\/ext\/ky.php?appid=3762&adtplid=23\'><\/script>");

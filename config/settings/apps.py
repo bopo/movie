@@ -10,6 +10,9 @@ INSTALLED_APPS += (
     'service.frontend',
     'django_extensions',    
 
+    'import_export',
+    'djangobower',
     'reversion',
     'imagekit',
+    'simditor',
 )

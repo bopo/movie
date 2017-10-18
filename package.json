@@ -1,0 +1,26 @@
+{
+  "name": "movie",
+  "version": "1.0.0",
+  "description": "本项目，作为 django 的练习项目",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "dependencies": {
+    "gulp": "^3.9.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bopo/movie.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bopo/movie/issues"
+  },
+  "homepage": "https://github.com/bopo/movie#readme"
+}

@@ -1,20 +1,11 @@
 # -*- coding: utf-8 -*-
-from django.contrib import admin, messages
-from django.contrib.admin import ModelAdmin, SimpleListFilter
-from django.contrib.admin.widgets import AdminDateWidget
-from django.contrib.auth.admin import UserAdmin
-from django.contrib.auth.forms import UserChangeForm
-from django.contrib.auth.models import User
-from django.forms import TextInput, ModelForm, Textarea, Select
+from django.contrib import admin
+from django.contrib.admin import ModelAdmin
+from django.forms import ModelForm
+from suit.widgets import NumberInput
 
-# from suit_ckeditor.widgets import CKEditorWidget
-# from suit_redactor.widgets import RedactorWidget
+from .models import Video, Notice, Category, Tags, Channel, Weblink
 
-from suit.admin import SortableTabularInline, SortableModelAdmin
-from suit.widgets import NumberInput, SuitDateWidget, SuitSplitDateTimeWidget, EnclosedInput, LinkedSelect, AutosizedTextarea
-# from reversion import VersionAdmin
-from suit.admin import SortableModelAdmin
-from .models import Photo, Weblink, Notice, Category,Tags
 
 def published(modeladmin, request, queryset):
     queryset.update(status=1)
@@ -23,46 +14,36 @@ def published(modeladmin, request, queryset):
 def recommend(modeladmin, request, queryset):
     queryset.update(recommend=1)
 
+
 published.short_description = u"发布所选的项目"
 recommend.short_description = u"推荐所选的项目"
 
 
-class PhotoForm(ModelForm):
+class VideoForm(ModelForm):
     class Meta:
         widgets = {
             'count': NumberInput(attrs={'class': 'input-mini'}),
             'ordering': NumberInput(attrs={'class': 'input-mini'}),
         }
 
-# class PhotoAdmin(ModelAdmin):
 
-#     def preview(self, obj):
-#         return '<img src="%s" height="64" width="64" />' % (obj.cover)
-
-#     actions = [published, recommend]
-#     list_display = ('title', 'views', 'likes', 'count', 'pub_date', 'recommend', 'status')
-#     search_fields = ('title', 'pub_date')
-#     # list_filter   = ('id', 'title', 'views')
-
-#     preview.allow_tags = True
-#     preview.short_description = u'图片'
-
-class PhotoInline(admin.TabularInline):
-    model = Photo
+class VideoInline(admin.TabularInline):
+    model = Video
     suit_classes = 'suit-tab suit-tab-cities'
 
-class TabbedPhotoAdmin(ModelAdmin):
-    # inlines = (PhotoInline,)
+
+class TabbedVideoAdmin(ModelAdmin):
+    # inlines = (VideoInline,)
 
     def preview(self, obj):
         return '<img src="%s" height="64" width="64" />' % (obj.cover)
 
     sortable = 'ordering'
-    form = PhotoForm
+    form = VideoForm
     actions = [published, recommend]
 
-    list_display = ('title', 'views', 'likes', 'count', 'pub_date', 'recommend', 'status')
-    search_fields = ('title', 'pub_date')
+    list_display = ('title', 'views', 'likes', 'count', 'created', 'recommend', 'status')
+    search_fields = ('title', 'created')
 
     def suit_row_attributes(self, obj, request):
         css_class = {
@@ -88,34 +69,24 @@ class TabbedPhotoAdmin(ModelAdmin):
         if css_class:
             return {'class': css_class, 'data': obj.title}
 
-
     fieldsets = [
         (None, {
             'classes': ('suit-tab suit-tab-general',),
-            'fields': ['title', 'slug', 'cover', 'photolist', 'category', 'tags']
+            'fields': ['title', 'slug', 'cover', 'playlist', 'category', 'tags']
         }),
         (None, {
             'classes': ('suit-tab suit-tab-info',),
-            'fields': ['views', 'likes','count','ordering', 'recommend', 'status']}
-        ),
+            'fields': ['views', 'likes', 'count', 'ordering', 'recommend', 'status']}
+         ),
     ]
 
     suit_form_tabs = (('general', u'基本'), ('info', u'扩展'))
     suit_form_includes = None
 
-# class NoticeAdmin(admin.ModelAdmin):
-#     list_display = ('subject', 'pub_date')
-
 
 class WeblinkAdmin(ModelAdmin):
-    list_display = ('name', 'icon', 'url')
-    search_fields = ('name', 'url')
-
-
-# class TabbedPhotoAdmin(PhotoAdmin):
-#     # list_filter = ('id', 'title', 'views')
-#     suit_form_tabs = (('tab1', u'基本'), ('tab2', u'扩展'))
-#     suit_form_includes = None
+    list_display = ('name', 'icon', 'link')
+    search_fields = ('name', 'link')
 
 
 class NoticeForm(ModelForm):
@@ -128,21 +99,25 @@ class NoticeForm(ModelForm):
             # 'content': CKEditorWidget(editor_options=_ck_editor_config),
         }
 
+
 class NoticeAdmin(ModelAdmin):
     form = NoticeForm
-    search_fields = ('subject','pub_date',)
-    list_display = ('subject','pub_date',)
+    search_fields = ('subject', 'created',)
+    list_display = ('subject', 'created',)
 
     fieldsets = [
         (None, {'fields': ['subject']}),
-        ('Content', {'classes': ('full-width',),'description': 'Full width example', 'fields': ('content',)})
+        ('Content', {'classes': ('full-width',), 'description': 'Full width example', 'fields': ('content',)})
     ]
 
+
 class CategoryAdmin(ModelAdmin):
-    list_display = ('title','subtitle')
+    list_display = ('title', 'subtitle')
+
 
 admin.site.register(Tags)
+admin.site.register(Channel)
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Notice, NoticeAdmin)
 admin.site.register(Weblink, WeblinkAdmin)
-admin.site.register(Photo, TabbedPhotoAdmin)
+admin.site.register(Video, TabbedVideoAdmin)

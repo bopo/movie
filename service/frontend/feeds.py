@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 from django.contrib.syndication.views import Feed
-from django.core.urlresolvers import reverse
 from django.core.cache import cache
+from django.core.urlresolvers import reverse
 
-from .models import Photo
+from .models import Video
 
 
 class RSS(Feed):
@@ -15,7 +15,7 @@ class RSS(Feed):
         items = cache.get('items')
 
         if items == None:
-            items = Photo.objects.order_by('-pub_date')[:20]
+            items = Video.objects.order_by('-created')[:20]
             cache.set('items', items, 30)
 
         return items
