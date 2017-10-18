@@ -18,4 +18,4 @@ django-debug_toolbar
 drf_generators
 click
 raven
-plan
+plandjango-htmlmin
